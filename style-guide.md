@@ -1,0 +1,6 @@
+- favor `panic!()` over `assert!()` as it is often easier to read
+- do explicit fn return typing (consistency)
+- do explicit returns in function (consistency)
+  - one line function can use implicit returns
+- if the main function can result in an unhandleable error, it should just return the error (which will panic kill that application)
+- 
