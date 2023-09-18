@@ -4,6 +4,15 @@ version = "0.1.0"
 edition = "2021"
 
 [[example]]
+name = "bevy_basic_camera"
+
+[[example]]
+name = "bevy_create_window"
+
+[[example]]
+name = "bevy_render_sprite"
+
+[[example]]
 name = "error_custom_thiserror"
 
 [[example]]
@@ -24,6 +33,7 @@ name = "unwrap_with_none"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+bevy = "0.11.2"
 exitcode = "1.1.2"
 rand = "0.8.5"
 thiserror = "1.0.48"
