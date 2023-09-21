@@ -9,3 +9,21 @@ As I have learning the Rust programming language, I am going to be adding in exa
 The following assets being used are from https://www.kenney.nl/:
 - assets/audio/interface/click_001.ogg
 - assets/sprites/planet1.png
+
+# TODO
+- file_create_or_open
+- bevy_bouncing_sprite (rename to bevy_sprite_bouncing)
+
+# TO LEARN
+- Box<dyn std::error::Error>
+- serde / serde_json = data serialization
+- tokio = async functional
+- log = logging
+- chrono = date / time library
+- rayon = data-parallelism library
+
+
+
+RUST NOTES
+- yank from crates.io (no new projects can include the package)
+- some implementation functionality hidden useless trait imported

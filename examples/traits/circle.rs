@@ -1,5 +1,5 @@
-use std::fmt::{Display, Formatter};
 use crate::area::Area;
+use std::fmt::{Display, Formatter};
 
 pub struct Circle {
     pub x: f64,
@@ -31,6 +31,10 @@ impl Default for Circle {
 
 impl Display for Circle {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
-        return write!(formatter, "Circle(x{} y{} r{})", self.x, self.y, self.radius);
+        return write!(
+            formatter,
+            "Circle(x{} y{} r{})",
+            self.x, self.y, self.radius
+        );
     }
 }

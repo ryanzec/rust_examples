@@ -4,13 +4,37 @@ version = "0.1.0"
 edition = "2021"
 
 [[example]]
-name = "bevy_basic_camera"
+name = "async_simple"
 
 [[example]]
-name = "bevy_create_window"
+name = "bevy_camera_basic"
 
 [[example]]
-name = "bevy_render_sprite"
+name = "bevy_global_resource_load"
+
+[[example]]
+name = "bevy_mouse_wheel_scroll_detection"
+
+[[example]]
+name = "bevy_sprite_bounce"
+
+[[example]]
+name = "bevy_sprite_render"
+
+[[example]]
+name = "bevy_sprite_rotate"
+
+[[example]]
+name = "bevy_window_create"
+
+[[example]]
+name = "channel_simple"
+
+[[example]]
+name = "channel_handling_multiple_messages"
+
+[[example]]
+name = "channel_high_throughput"
 
 [[example]]
 name = "error_custom_thiserror"
@@ -22,7 +46,31 @@ name = "error_handling_with_closure"
 name = "error_panic"
 
 [[example]]
-name = "error_string"
+name = "let_some_with_else"
+
+[[example]]
+name = "macro_simple"
+
+[[example]]
+name = "println"
+
+[[example]]
+name = "rayon_simple"
+
+[[example]]
+name = "thread_multiple"
+
+[[example]]
+name = "thread_ownership"
+
+[[example]]
+name = "thread_reference_counter"
+
+[[example]]
+name = "thread_shared_data"
+
+[[example]]
+name = "thread_simple"
 
 [[example]]
 name = "traits"
@@ -35,5 +83,8 @@ name = "unwrap_with_none"
 [dependencies]
 bevy = "0.11.2"
 exitcode = "1.1.2"
+num = "0.4.1"
 rand = "0.8.5"
+rayon = "1.7.0"
 thiserror = "1.0.48"
+tokio = { version = "1.32.0", features = ["full"] }

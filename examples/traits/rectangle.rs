@@ -1,5 +1,5 @@
-use std::fmt::{Display, Formatter};
 use crate::area::Area;
+use std::fmt::{Display, Formatter};
 
 pub struct Rectangle {
     pub x: f64,
@@ -33,6 +33,10 @@ impl Default for Rectangle {
 
 impl Display for Rectangle {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
-        return write!(formatter, "Rectangle(x{} y{} w{} h{})", self.x, self.y, self.width, self.height);
+        return write!(
+            formatter,
+            "Rectangle(x{} y{} w{} h{})",
+            self.x, self.y, self.width, self.height
+        );
     }
 }

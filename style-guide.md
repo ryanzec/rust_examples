@@ -2,5 +2,7 @@
 - do explicit fn return typing (consistency)
 - do explicit returns in function (consistency)
   - one line function can use implicit returns
-- if the main function can result in an unhandleable error, it should just return the error (which will panic kill that application)
-- 
+- if the main function can result in an unrecoverable error, it should just return the error instead of explicitly panicing
+- use `tokio` for async functionality
+  - seem to be the most active and used library for async
+-
