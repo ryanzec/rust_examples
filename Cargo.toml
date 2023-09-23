@@ -10,6 +10,9 @@ name = "async_simple"
 name = "bevy_camera_basic"
 
 [[example]]
+name = "bevy_frames_per_second"
+
+[[example]]
 name = "bevy_global_resource_load"
 
 [[example]]
@@ -19,6 +22,9 @@ name = "bevy_mouse_wheel_scroll_detection"
 name = "bevy_sprite_bounce"
 
 [[example]]
+name = "bevy_sprite_layers"
+
+[[example]]
 name = "bevy_sprite_render"
 
 [[example]]
@@ -26,6 +32,12 @@ name = "bevy_sprite_rotate"
 
 [[example]]
 name = "bevy_window_create"
+
+[[example]]
+name = "box_place_on_heap"
+
+[[example]]
+name = "box_recursive_type"
 
 [[example]]
 name = "channel_simple"
