@@ -2,9 +2,9 @@ use bevy::input::mouse::MouseScrollUnit;
 use bevy::input::mouse::MouseWheel;
 use bevy::prelude::*;
 
-const CAMERA_ZOOM_STEP: f32 = 0.05;
-const CAMERA_MINIMUM_ZOOM: f32 = 0.15;
-const CAMERA_MAXIMUM_ZOOM: f32 = 3.0;
+const CAMERA_ZOOM_STEP: f32 = 0.5;
+const CAMERA_MINIMUM_ZOOM: f32 = 0.05;
+const CAMERA_MAXIMUM_ZOOM: f32 = 150.0;
 
 pub fn mouse_wheel_scroll_system(
     mut scroll_evr: EventReader<MouseWheel>,
@@ -35,6 +35,8 @@ pub fn mouse_wheel_scroll_system(
 
                 return;
             }
+
+            println!("new scale: {}", new_scale);
 
             projection.scale = new_scale;
         }

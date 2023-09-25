@@ -11,9 +11,9 @@ pub fn add_sprite_renderer(
     // @todo(resource) not sure if there is a better way to handle this without unwrap()
     let window: &Window = window_query.get_single().unwrap();
 
-    for i in 0..100 {
+    for i in 0..1000 {
         commands.spawn(SpriteBundle {
-            transform: Transform::from_xyz((i * 13) as f32, window.height() / 2.0, 0.01),
+            transform: Transform::from_xyz((i * 1) as f32, window.height() / 2.0, 0.01),
             texture: asset_sever.load("sprites/planet1.png"),
             sprite: Sprite {
                 custom_size: Some(vec2(100.0, 100.0)),
