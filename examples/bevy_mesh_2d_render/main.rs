@@ -1,10 +1,12 @@
 use crate::game::frames_per_second::FramesPerSecondPlugin;
 use crate::game::global_resource_load::LoadGlobalResourcePlugin;
+use crate::game::mouse_position::MousePositionPlugin;
 use crate::game::mouse_wheel_scroll::MouseWheelScrollPlugin;
 use bevy::prelude::*;
 use game::camera::CameraPlugin;
 use game::core::CorePlugin;
 use game::mesh_2d_render::Mesh2DRenderPlugin;
+use game::pan_camera::PanCameraPlugin;
 
 mod game;
 
@@ -17,6 +19,8 @@ fn main() -> () {
     main_app.add_plugins(Mesh2DRenderPlugin);
     main_app.add_plugins(FramesPerSecondPlugin);
     main_app.add_plugins(MouseWheelScrollPlugin);
+    main_app.add_plugins(MousePositionPlugin);
+    main_app.add_plugins(PanCameraPlugin);
 
     main_app.run();
 }

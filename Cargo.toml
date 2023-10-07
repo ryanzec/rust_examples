@@ -77,6 +77,9 @@ name = "macro_simple"
 name = "println"
 
 [[example]]
+name = "random_number"
+
+[[example]]
 name = "rayon_simple"
 
 [[example]]

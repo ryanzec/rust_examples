@@ -1,17 +1,17 @@
 use crate::game::global_resource_load::MeshMaterial;
+use crate::game::mesh_2d_render::{get_tile_vertices, get_triangle_for_tile, get_uvs_for_tile};
 use bevy::render::mesh::{Indices, PrimitiveTopology};
 use bevy::{prelude::*, sprite::MaterialMesh2dBundle};
-
-const SPRITE_SIZE: f32 = 64.0;
-const TILE_TEXTURE_SIZE: f32 = 0.5;
+use rand::Rng;
 
 pub fn mesh_2d_render_system(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mesh_material: Res<MeshMaterial>,
 ) -> () {
+    let mut rng = rand::thread_rng();
     let mut mesh = Mesh::new(PrimitiveTopology::TriangleList);
-    let map_dimensions = (102, 102);
+    let map_dimensions = (500, 500);
     let sprite_count = map_dimensions.0 * map_dimensions.1;
     let mut vertices = vec![[0.0, 0.0, 0.0]; sprite_count * 4];
     let normals = vec![[0.0, 0.0, 1.0]; sprite_count * 4];
@@ -19,68 +19,36 @@ pub fn mesh_2d_render_system(
     let mut triangles = vec![0u32; sprite_count * 6];
 
     for i in 0..(sprite_count) {
-        let tile_index = i % 4;
-
-        let tile_position: (usize, usize) = (tile_index % 2, tile_index / 2);
-        let position_x_offset: f32 = (i % map_dimensions.0) as f32 * SPRITE_SIZE;
-        let position_y_offset: f32 = (i / map_dimensions.0) as f32 * SPRITE_SIZE;
+        let tile_index = rng.gen_range(0..4);
+        let tile_position: (u32, u32) = (tile_index % 2, tile_index / 2);
 
         // needed for vertices and uvs since each sprite needs 4 per
         let index_offset_4 = i * 4;
 
         // needed for vertices and uvs since each sprite needs 4 per
         let index_offset_6 = i * 6;
-        let triangle_index_offset = (i + 1) * 4;
+
+        let tile_vertices = get_tile_vertices(i as u32);
+        let tile_uvs = get_uvs_for_tile(tile_position.0, tile_position.1);
+        let tile_triangles = get_triangle_for_tile(i as u32);
 
         // add the vertices for the 2 triangles that will make up the sprite
-        vertices[index_offset_4 + 0] = [position_x_offset, position_y_offset, 0.0];
-        vertices[index_offset_4 + 1] = [position_x_offset + SPRITE_SIZE, position_y_offset, 0.0];
-        vertices[index_offset_4 + 2] = [position_x_offset, position_y_offset + SPRITE_SIZE, 0.0];
-        vertices[index_offset_4 + 3] = [
-            position_x_offset + SPRITE_SIZE,
-            position_y_offset + SPRITE_SIZE,
-            0.0,
-        ];
+        vertices[index_offset_4 + 0] = tile_vertices[0];
+        vertices[index_offset_4 + 1] = tile_vertices[1];
+        vertices[index_offset_4 + 2] = tile_vertices[2];
+        vertices[index_offset_4 + 3] = tile_vertices[3];
 
-        // uvs 0x0 is located at top left of the texture
-        uvs[index_offset_4 + 0] = [
-            tile_position.0 as f32 * TILE_TEXTURE_SIZE,
-            tile_position.1 as f32 * TILE_TEXTURE_SIZE + TILE_TEXTURE_SIZE,
-        ];
-        uvs[index_offset_4 + 1] = [
-            tile_position.0 as f32 * TILE_TEXTURE_SIZE + TILE_TEXTURE_SIZE,
-            tile_position.1 as f32 * TILE_TEXTURE_SIZE + TILE_TEXTURE_SIZE,
-        ];
-        uvs[index_offset_4 + 2] = [
-            tile_position.0 as f32 * TILE_TEXTURE_SIZE,
-            tile_position.1 as f32 * TILE_TEXTURE_SIZE,
-        ];
-        uvs[index_offset_4 + 3] = [
-            tile_position.0 as f32 * TILE_TEXTURE_SIZE + TILE_TEXTURE_SIZE,
-            tile_position.1 as f32 * TILE_TEXTURE_SIZE,
-        ];
+        uvs[index_offset_4 + 0] = tile_uvs[0];
+        uvs[index_offset_4 + 1] = tile_uvs[1];
+        uvs[index_offset_4 + 2] = tile_uvs[2];
+        uvs[index_offset_4 + 3] = tile_uvs[3];
 
-        // println!(
-        //     "({}) {}x{} | {:?}",
-        //     tile_index, position_x_offset, position_y_offset, tile_position
-        // );
-        // println!(
-        //     "{:?}:{:?}:{:?}:{:?}",
-        //     uvs[index_offset_4 + 0],
-        //     uvs[index_offset_4 + 1],
-        //     uvs[index_offset_4 + 2],
-        //     uvs[index_offset_4 + 3]
-        // );
-
-        // triangle 1 which is bottom right -> top right  -> top left
-        triangles[index_offset_6 + 0] = (triangle_index_offset - 4) as u32;
-        triangles[index_offset_6 + 1] = (triangle_index_offset - 3) as u32;
-        triangles[index_offset_6 + 2] = (triangle_index_offset - 1) as u32;
-
-        // triangle 2 which is bottom right -> top left -> bottom left
-        triangles[index_offset_6 + 3] = (triangle_index_offset - 4) as u32;
-        triangles[index_offset_6 + 4] = (triangle_index_offset - 1) as u32;
-        triangles[index_offset_6 + 5] = (triangle_index_offset - 2) as u32;
+        triangles[index_offset_6 + 0] = tile_triangles[0];
+        triangles[index_offset_6 + 1] = tile_triangles[1];
+        triangles[index_offset_6 + 2] = tile_triangles[2];
+        triangles[index_offset_6 + 3] = tile_triangles[3];
+        triangles[index_offset_6 + 4] = tile_triangles[4];
+        triangles[index_offset_6 + 5] = tile_triangles[5];
     }
 
     // the positions are the vertices for the triangles
