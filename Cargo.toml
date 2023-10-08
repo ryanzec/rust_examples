@@ -7,41 +7,7 @@ edition = "2021"
 name = "async_simple"
 
 [[example]]
-name = "bevy_camera_basic"
-
-[[example]]
-name = "bevy_frames_per_second"
-
-[[example]]
-name = "bevy_global_resource_load"
-
-# just references another example
-#[[example]]
-#name = "bevy_keyboard_input"
-
-[[example]]
-name = "bevy_mesh_2d_render"
-
-[[example]]
-name = "bevy_mouse_button_detection"
-
-[[example]]
-name = "bevy_mouse_wheel_scroll_detection"
-
-[[example]]
-name = "bevy_sprite_bounce"
-
-[[example]]
-name = "bevy_sprite_layers"
-
-[[example]]
-name = "bevy_sprite_render"
-
-[[example]]
-name = "bevy_sprite_rotate"
-
-[[example]]
-name = "bevy_window_create"
+name = "async_with_return_value"
 
 [[example]]
 name = "box_place_on_heap"
